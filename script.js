@@ -4,6 +4,11 @@ var generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
  let length = parseInt(prompt('Choose a password length'))
+ if (length < 129 && length > 7) {
+ } else {
+  alert('wrong length')
+  return
+ }
  let upper = confirm('Would you like uppercase letters?')
  let lower = confirm('Would you like lowercase letters?')
  let nums = confirm('Would you like numbers?')
@@ -13,33 +18,32 @@ function generatePassword() {
  let numsChar = '1234567890'
  let specialChar = '!@#$%^&*()_+'
 
- if (length < 129 && length > 7) {
+ 
   let newPass = ''
   let newPassChar = ''
-  if upperChar {
+  if (upperChar) {
    newPassChar += upperChar
   }
-  if lowerChar {
+  if (lowerChar) {
    newPassChar += lowerChar
   }
-  if numsChar {
+  if (numsChar) {
    newPassChar += numsChar
   }
-  if specialChar {
+  if (specialChar) {
    newPassChar += specialChar
   }
   console.log(newPassChar)
 
   for (let i = 0; i < length; i++) {
    let newLetter = newPassChar[Math.floor(Math.random() * newPassChar.length)]
-   newPass += newChar
+   newPass += newLetter
   }
+  return newPass
   console.log(newPass)
- } else {
-  alert('wrong length')
- }
 
 }
+
 // Write password to the #password input
 function writePassword() {
  var password = generatePassword();
